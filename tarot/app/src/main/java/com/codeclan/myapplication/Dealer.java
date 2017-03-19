@@ -16,4 +16,6 @@ public class Dealer {
         this.deck.addAll(Arrays.asList(cards));
     }
 
+
+
 }
