@@ -19,19 +19,19 @@ public class Card {
     }
 
     public Suit getSuit() {
-        return Suit;
+        return suit;
     }
 
     public void setSuit(Suit suit) {
-        Suit = suit;
+        this.suit = suit;
     }
 
-    public getFace() {
-        return Face;
+    public Face getFace() {
+        return face;
     }
 
-    public void setFace(face) {
-        Face = face;
+    public void setFace(Face face) {
+        this.face = face;
     }
 
     public int getGameValue() {
