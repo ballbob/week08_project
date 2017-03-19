@@ -6,8 +6,8 @@ package com.codeclan.myapplication;
 
 public class Card {
 
-    Private Suit suit;
-    Private Face face;
+    private Suit suit;
+    private Face face;
     private int gameValue;
     private int winValue;
 
@@ -18,19 +18,19 @@ public class Card {
         this.winValue = winValue;
     }
 
-    public Private getSuit() {
+    public Suit getSuit() {
         return Suit;
     }
 
-    public void setSuit(Private suit) {
+    public void setSuit(Suit suit) {
         Suit = suit;
     }
 
-    public Private getFace() {
+    public getFace() {
         return Face;
     }
 
-    public void setFace(Private face) {
+    public void setFace(face) {
         Face = face;
     }
 
