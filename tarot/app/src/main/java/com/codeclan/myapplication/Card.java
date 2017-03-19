@@ -22,31 +22,15 @@ public class Card {
         return suit;
     }
 
-    public void setSuit(Suit suit) {
-        this.suit = suit;
-    }
-
     public Face getFace() {
         return face;
-    }
-
-    public void setFace(Face face) {
-        this.face = face;
     }
 
     public int getGameValue() {
         return gameValue;
     }
 
-    public void setGameValue(int gameValue) {
-        this.gameValue = gameValue;
-    }
-
     public int getWinValue() {
         return winValue;
-    }
-
-    public void setWinValue(int winValue) {
-        this.winValue = winValue;
     }
 }
