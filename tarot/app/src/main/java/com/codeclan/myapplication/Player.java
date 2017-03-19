@@ -37,6 +37,8 @@ public class Player {
     //need LowestOfSuit(Suit suit) method which displays the lowest
     // value card in the hand of a given suit
 
+    //need addToWinnings() method which will add a trick to the winnings.
+
     //need winValue() method which counts the winValues of all
     // cards in the winnings arraylist
 

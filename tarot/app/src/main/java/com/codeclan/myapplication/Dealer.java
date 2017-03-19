@@ -16,6 +16,8 @@ public class Dealer {
         this.deck.addAll(Arrays.asList(cards));
     }
 
+    //need shuffle() method to randomise the deck
 
+    //need deal() method to give 18 cards to a player
 
 }
