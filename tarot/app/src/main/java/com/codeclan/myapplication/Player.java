@@ -28,8 +28,24 @@ public class Player {
         return this.hand.size();
     }
 
+    //the player must be able to add cards to its hand
+    public void addToHand(Card card){
+        this.hand.add(card);
+    }
+
     //need containsSuit() method which determines if the player has
     //a card of the required suit
+    public boolean handContainsSuit(Suit suit) {
+        for (Card card : this.hand) {
+            if (card.getSuit() == suit) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        return false;
+    }
 
     //need LowestInDeck() method which displays the lowest value card
     //in the hand
