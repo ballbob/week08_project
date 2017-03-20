@@ -73,7 +73,16 @@ public class Player{
 
     //need LowestOfSuit(Suit suit) method which displays the lowest
     // value card in the hand of a given suit
-
+    public Card lowestOfSuit(Suit suit){
+        ArrayList<Card> cardsOfSuit = new ArrayList<Card>();
+        for (Card card : hand){
+            if(card.getSuit() == suit){
+                cardsOfSuit.add(card);
+            }
+        }
+        Collections.sort(cardsOfSuit, new cardValueComparator());
+        return cardsOfSuit.get(0);
+    }
 
     //winnings
     //need addToWinnings() method which will add a trick to the winnings.

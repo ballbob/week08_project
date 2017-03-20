@@ -82,4 +82,12 @@ public class PlayerTest {
         player.addToHand(kingOfHearts);
         assertEquals(twoOfHearts,player.lowestInHand());
     }
+
+    @Test
+    public void canPlayLowestOfSuit(){
+        player.addToHand(twoOfHearts);
+        player.addToHand(kingOfHearts);
+        player.addToHand(knightOfSpades);
+        assertEquals(twoOfHearts,player.lowestOfSuit(HEARTS));
+    }
 }
