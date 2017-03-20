@@ -22,38 +22,32 @@ public class PlayerTest {
 
     @Before
     public void before(){
-        Card kingOfHearts = new Card(Suit.HEARTS,Face.KING,10,5);
-        Card twoOfHearts = new Card(Suit.HEARTS,Face.TWO,1,1);
-        Card knightOfSpades = new Card(SPADES,Face.KNIGHT,10,5);
-        Card theMagician = new Card(Suit.BOUT,Face.BOUT,2,2);
+        kingOfHearts = new Card(Suit.HEARTS,Face.KING,10,5);
+        twoOfHearts = new Card(Suit.HEARTS,Face.TWO,1,1);
+        knightOfSpades = new Card(SPADES,Face.KNIGHT,10,5);
+        theMagician = new Card(Suit.BOUT,Face.BOUT,2,2);
 
-        Player player = new Player("Chimmy");
+        player = new Player("Chimmy");
     }
 
     @Test
     public void canGetName(){
-        Player player = new Player("Chimmy");
         assertEquals("Chimmy", player.getName());
     }
 
     @Test
     public void handStartsEmpty(){
-        Player player = new Player("Chimmy");
         assertEquals(0, player.handLength());
     }
 
     @Test
     public void canAddCardToHand(){
-        Player player = new Player("Chimmy");
-        Card twoOfHearts = new Card(Suit.HEARTS,Face.TWO,1,1);
         player.addToHand(twoOfHearts);
         assertEquals(1, player.handLength());
     }
 
     @Test
     public void canRemoveCard(){
-        Player player = new Player("Chimmy");
-        Card twoOfHearts = new Card(Suit.HEARTS,Face.TWO,1,1);
         player.addToHand(twoOfHearts);
         player.removeFromHand(twoOfHearts);
         assertEquals(0,player.handLength());
@@ -61,31 +55,31 @@ public class PlayerTest {
 
     @Test
     public void canCheckIfHandContainsSuit(){
-        Player player = new Player("Chimmy");
-        Card twoOfHearts = new Card(Suit.HEARTS,Face.TWO,1,1);
         player.addToHand(twoOfHearts);
         assertEquals(true,player.handContainsSuit(Suit.HEARTS));
     }
 
     @Test
     public void canCheckHandDoesNotContainSuit(){
-        Player player = new Player("Chimmy");
-        Card twoOfHearts = new Card(Suit.HEARTS,Face.TWO,1,1);
         player.addToHand(twoOfHearts);
         assertEquals(false,player.handContainsSuit(SPADES));
     }
 
     @Test
     public void winningsStartEmpty(){
-        Player player = new Player("Chimmy");
         assertEquals(0, player.winningsLength());
     }
 
     @Test
     public void canAddCardToWinnings(){
-        Player player = new Player("Chimmy");
-        Card twoOfHearts = new Card(Suit.HEARTS,Face.TWO,1,1);
         player.addToWinnings(twoOfHearts);
+        assertEquals(1,player.winningsLength());
     }
 
+    @Test
+    public void canFindLowestInHand(){
+        player.addToHand(twoOfHearts);
+        player.addToHand(kingOfHearts);
+        assertEquals(twoOfHearts,player.lowestInHand());
+    }
 }

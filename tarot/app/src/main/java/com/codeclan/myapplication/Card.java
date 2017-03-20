@@ -8,7 +8,7 @@ public class Card {
 
     private Suit suit;
     private Face face;
-    private int gameValue;
+    public int gameValue;
     private int winValue;
 
     public Card(Suit suit, Face face, int gameValue, int winValue){

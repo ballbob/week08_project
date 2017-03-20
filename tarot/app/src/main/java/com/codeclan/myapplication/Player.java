@@ -1,15 +1,14 @@
 package com.codeclan.myapplication;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
+import java.util.*;
 
 /**
  * Created by user on 19/03/2017.
  */
 
-public class Player {
-
+public class Player{
+    Card card1;
+    Card card2;
     private String name;
     private ArrayList<Card> hand;
     private ArrayList<Card> winnings;
@@ -56,15 +55,30 @@ public class Player {
     //need LowestInDeck() method which displays the lowest value card
     //in the hand
 
-//    public Card lowestInHand(){
-  //      hand.sort(Comparator);
-    //}
+    public class cardValueComparator implements Comparator<Card> {
+        public int compare(Card card1, Card card2) {
+            if (card1.getGameValue() <= card2.getGameValue()){
+                return card1.getGameValue();
+            }
+            else {
+                return card2.getGameValue();
+            }
+        }
+    }
+
+    public Card lowestInHand(){
+        Collections.sort(hand, new cardValueComparator());
+        return hand.get(0);
+    }
 
     //need LowestOfSuit(Suit suit) method which displays the lowest
     // value card in the hand of a given suit
 
+
     //winnings
     //need addToWinnings() method which will add a trick to the winnings.
+    //need countWinnings() method which will return an int - the sum of
+    //the winnings' winValues.
     public void addToWinnings(Card card){
         this.winnings.add(card);
     }
