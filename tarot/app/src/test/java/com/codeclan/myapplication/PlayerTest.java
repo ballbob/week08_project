@@ -90,4 +90,12 @@ public class PlayerTest {
         player.addToHand(knightOfSpades);
         assertEquals(twoOfHearts,player.lowestOfSuit(HEARTS));
     }
+
+    @Test
+    public void canAddUpWinnings(){
+        player.addToWinnings(twoOfHearts);
+        player.addToWinnings(kingOfHearts);
+        player.addToWinnings(theMagician);
+        assertEquals(8,player.winningsValue());
+    }
 }

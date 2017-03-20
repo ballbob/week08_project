@@ -86,8 +86,6 @@ public class Player{
 
     //winnings
     //need addToWinnings() method which will add a trick to the winnings.
-    //need countWinnings() method which will return an int - the sum of
-    //the winnings' winValues.
     public void addToWinnings(Card card){
         this.winnings.add(card);
     }
@@ -98,5 +96,11 @@ public class Player{
 
     //need winValue() method which counts the winValues of all
     // cards in the winnings arraylist
-
+    public int winningsValue(){
+        int points = 0;
+        for (Card card : winnings){
+            points = points + card.getWinValue();
+        }
+        return points;
+    }
 }
