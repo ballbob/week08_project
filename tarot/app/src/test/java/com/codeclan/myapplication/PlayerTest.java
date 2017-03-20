@@ -51,6 +51,15 @@ public class PlayerTest {
     }
 
     @Test
+    public void canRemoveCard(){
+        Player player = new Player("Chimmy");
+        Card twoOfHearts = new Card(Suit.HEARTS,Face.TWO,1,1);
+        player.addToHand(twoOfHearts);
+        player.removeFromHand(twoOfHearts);
+        assertEquals(0,player.handLength());
+    }
+
+    @Test
     public void canCheckIfHandContainsSuit(){
         Player player = new Player("Chimmy");
         Card twoOfHearts = new Card(Suit.HEARTS,Face.TWO,1,1);
@@ -64,6 +73,19 @@ public class PlayerTest {
         Card twoOfHearts = new Card(Suit.HEARTS,Face.TWO,1,1);
         player.addToHand(twoOfHearts);
         assertEquals(false,player.handContainsSuit(SPADES));
+    }
+
+    @Test
+    public void winningsStartEmpty(){
+        Player player = new Player("Chimmy");
+        assertEquals(0, player.winningsLength());
+    }
+
+    @Test
+    public void canAddCardToWinnings(){
+        Player player = new Player("Chimmy");
+        Card twoOfHearts = new Card(Suit.HEARTS,Face.TWO,1,1);
+        player.addToWinnings(twoOfHearts);
     }
 
 }
