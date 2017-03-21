@@ -34,8 +34,12 @@ public class Dealer {
         Collections.shuffle(deck);
     }
 
-
-
     //need deal() method to give 18 cards to a player
+
+    public void deal(Player player){
+        for(int i = 0; i < 18; i++) {
+            player.addToHand(this.deck.get(0));
+        }
+    }
 
 }

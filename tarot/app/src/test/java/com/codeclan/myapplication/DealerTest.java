@@ -3,6 +3,9 @@ package com.codeclan.myapplication;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import static com.codeclan.myapplication.Suit.*;
 import static com.codeclan.myapplication.Face.*;
 import static junit.framework.Assert.assertEquals;
@@ -69,6 +72,7 @@ public class DealerTest {
         judgement = new Card(Suit.BOUT, Face.BOUT, 20, 5);
         theWorld = new Card(Suit.BOUT, Face.BOUT, 21, 5);
 
+
         player1 = new Player("Jim");
         player2 = new Player("Jom");
         player3 = new Player("Jam");
@@ -80,13 +84,44 @@ public class DealerTest {
         dealer.add(theMagician);
         assertEquals(theMagician,dealer.showTopCard());
     }
+//
+//    @Test
+//    public void canShuffle(){
+//        dealer.add(theMagician);
+//        dealer.add(judgement);
+//        dealer.shuffle();
+//        assertEquals(judgement, dealer.showTopCard());
+//    }
 
     @Test
-    public void canShuffle(){
+    public void canPopulateDeck(){
+        ArrayList<Card> cards = new ArrayList<Card>();
         dealer.add(theMagician);
+        dealer.add(thePriestess);
+        dealer.add(theEmpress);
+        dealer.add(theEmperor);
+        dealer.add(theHierophant);
+        dealer.add(theLovers);
+        dealer.add(theChariot);
+        dealer.add(strength);
+        dealer.add(theHermit);
+        dealer.add(theWheel);
+        dealer.add(justice);
+        dealer.add(theHangedMan);
+        dealer.add(death);
+        dealer.add(temperance);
+        dealer.add(theDevil);
+        dealer.add(theTower);
+        dealer.add(theStar);
+        dealer.add(theMoon);
+        dealer.add(theSun);
         dealer.add(judgement);
-        dealer.shuffle();
-        assertEquals(judgement, dealer.showTopCard());
+        dealer.add(theWorld);
+
+        dealer.deal(player1);
+
+        assertEquals(18,player1.handLength());
+
     }
 
 
