@@ -103,4 +103,8 @@ public class Player{
         }
         return points;
     }
+
+    public void addTrickToWinnings(ArrayList<Card> trick){
+        this.winnings.addAll(trick);
+    }
 }

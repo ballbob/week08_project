@@ -98,4 +98,6 @@ public class PlayerTest {
         player.addToWinnings(theMagician);
         assertEquals(8,player.winningsValue());
     }
+
+
 }
