@@ -3,19 +3,15 @@ package com.codeclan.myapplication;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 import static com.codeclan.myapplication.Suit.*;
 import static com.codeclan.myapplication.Face.*;
-import static junit.framework.Assert.assertEquals;
-
+import static junit.framework.Assert.*;
 
 /**
  * Created by user on 21/03/2017.
  */
 
-public class DealerTest {
+public class GameTest {
 
     Dealer dealer;
 
@@ -42,9 +38,14 @@ public class DealerTest {
     Card theWorld;
 
     Player player1;
+    Player player2;
+    Player player3;
+    Player player4;
+
+    Game game;
 
     @Before
-    public void before() {
+    public void before(){
         dealer = new Dealer();
 
         theMagician = new Card(Suit.BOUT, Face.BOUT, 1, 5);
@@ -71,50 +72,35 @@ public class DealerTest {
 
 
         player1 = new Player("Jim");
+        player2 = new Player("Jom");
+        player3 = new Player("Jam");
+        player4 = new Player("Jum");
+
+        game = new Game(dealer, player1, player2, player3, player4);
     }
 
     @Test
-    public void canaddCardandShowTopCard(){
-        dealer.add(theMagician);
-        assertEquals(theMagician,dealer.showTopCard());
+    public void canGetDealer(){
+        assertEquals(dealer, game.getDealer());
     }
-//
-//    @Test
-//    public void canShuffle(){
-//        dealer.add(theMagician);
-//        dealer.add(judgement);
-//        dealer.shuffle();
-//        assertEquals(judgement, dealer.showTopCard());
-//    }
 
     @Test
-    public void canPopulateDeck(){
-        ArrayList<Card> cards = new ArrayList<Card>();
-        dealer.add(theMagician);
-        dealer.add(thePriestess);
-        dealer.add(theEmpress);
-        dealer.add(theEmperor);
-        dealer.add(theHierophant);
-        dealer.add(theLovers);
-        dealer.add(theChariot);
-        dealer.add(strength);
-        dealer.add(theHermit);
-        dealer.add(theWheel);
-        dealer.add(justice);
-        dealer.add(theHangedMan);
-        dealer.add(death);
-        dealer.add(temperance);
-        dealer.add(theDevil);
-        dealer.add(theTower);
-        dealer.add(theStar);
-        dealer.add(theMoon);
-        dealer.add(theSun);
-        dealer.add(judgement);
-        dealer.add(theWorld);
+    public void canGetPlayer1(){
+        assertEquals(player1,game.getPlayerOne());
+    }
 
-        dealer.deal(player1);
+    @Test
+    public void canGetPlayer2(){
+        assertEquals(player2,game.getPlayerTwo());
+    }
 
-        assertEquals(18,player1.handLength());
+    @Test
+    public void canGetPlayer3(){
+        assertEquals(player3,game.getPlayerThree());
+    }
 
+    @Test
+    public void canGetPlayer4(){
+        assertEquals(player4,game.getPlayerFour());
     }
 }

@@ -25,7 +25,6 @@ public class Dealer {
         this.deck.add(card);
     }
 
-    //need shuffle() method to randomise the deck
     public Card showTopCard(){
         return deck.get(0);
     }
@@ -33,8 +32,6 @@ public class Dealer {
     public void shuffle(){
         Collections.shuffle(deck);
     }
-
-    //need deal() method to give 18 cards to a player
 
     public void deal(Player player){
         for(int i = 0; i < 18; i++) {
