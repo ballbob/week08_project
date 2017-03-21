@@ -15,28 +15,6 @@ public class GameTest {
 
     Dealer dealer;
 
-    Card theMagician;
-    Card thePriestess;
-    Card theEmpress;
-    Card theEmperor;
-    Card theHierophant;
-    Card theLovers;
-    Card theChariot;
-    Card strength;
-    Card theHermit;
-    Card theWheel;
-    Card justice;
-    Card theHangedMan;
-    Card death;
-    Card temperance;
-    Card theDevil;
-    Card theTower;
-    Card theStar;
-    Card theMoon;
-    Card theSun;
-    Card judgement;
-    Card theWorld;
-
     Player player1;
     Player player2;
     Player player3;
@@ -47,29 +25,6 @@ public class GameTest {
     @Before
     public void before(){
         dealer = new Dealer();
-
-        theMagician = new Card(Suit.BOUT, Face.BOUT, 1, 5);
-        thePriestess = new Card(Suit.BOUT, Face.BOUT, 2, 5);
-        theEmpress = new Card(Suit.BOUT, Face.BOUT, 3, 5);
-        theEmperor = new Card(Suit.BOUT, Face.BOUT, 4, 5);
-        theHierophant = new Card(Suit.BOUT, Face.BOUT, 4, 5);
-        theLovers = new Card(Suit.BOUT, Face.BOUT, 5, 5);
-        theChariot = new Card(Suit.BOUT, Face.BOUT, 6, 5);
-        strength = new Card(Suit.BOUT, Face.BOUT, 7, 5);
-        theHermit = new Card(Suit.BOUT, Face.BOUT, 8, 5);
-        theWheel = new Card(Suit.BOUT, Face.BOUT, 9, 5);
-        justice = new Card(Suit.BOUT, Face.BOUT, 10, 5);
-        theHangedMan = new Card(Suit.BOUT, Face.BOUT, 11, 5);
-        death = new Card(Suit.BOUT, Face.BOUT, 12, 5);
-        temperance = new Card(Suit.BOUT, Face.BOUT, 13, 5);
-        theDevil = new Card(Suit.BOUT, Face.BOUT, 14, 5);
-        theTower = new Card(Suit.BOUT, Face.BOUT, 15, 5);
-        theStar = new Card(Suit.BOUT, Face.BOUT, 16, 5);
-        theMoon = new Card(Suit.BOUT, Face.BOUT, 17, 5);
-        theSun = new Card(Suit.BOUT, Face.BOUT, 19, 5);
-        judgement = new Card(Suit.BOUT, Face.BOUT, 20, 5);
-        theWorld = new Card(Suit.BOUT, Face.BOUT, 21, 5);
-
 
         player1 = new Player("Jim");
         player2 = new Player("Jom");
@@ -102,5 +57,15 @@ public class GameTest {
     @Test
     public void canGetPlayer4(){
         assertEquals(player4,game.getPlayerFour());
+    }
+
+    @Test
+    public void canSetUp(){
+        game.setUp();
+        assertEquals(77,dealer.deckSize());
+        assertEquals(18,player1.handLength());
+        assertEquals(18,player2.handLength());
+        assertEquals(18,player3.handLength());
+        assertEquals(18,player4.handLength());
     }
 }

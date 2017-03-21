@@ -39,4 +39,8 @@ public class Dealer {
         }
     }
 
+    public int deckSize(){
+        return this.deck.size();
+    }
+
 }

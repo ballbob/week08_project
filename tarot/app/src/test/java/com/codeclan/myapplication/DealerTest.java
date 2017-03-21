@@ -89,7 +89,6 @@ public class DealerTest {
 
     @Test
     public void canPopulateDeck(){
-        ArrayList<Card> cards = new ArrayList<Card>();
         dealer.add(theMagician);
         dealer.add(thePriestess);
         dealer.add(theEmpress);
