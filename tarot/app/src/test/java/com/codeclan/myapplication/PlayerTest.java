@@ -69,12 +69,12 @@ public class PlayerTest {
     public void winningsStartEmpty(){
         assertEquals(0, player.winningsLength());
     }
-
-    @Test
-    public void canAddCardToWinnings(){
-        player.addToWinnings(twoOfHearts);
-        assertEquals(1,player.winningsLength());
-    }
+//
+//    @Test
+//    public void canAddCardToWinnings(){
+//        player.addToWinnings(twoOfHearts);
+//        assertEquals(1,player.winningsLength());
+//    }
 
     @Test
     public void canFindLowestInHand(){
@@ -91,13 +91,13 @@ public class PlayerTest {
         assertEquals(twoOfHearts,player.lowestOfSuit(HEARTS));
     }
 
-    @Test
-    public void canAddUpWinnings(){
-        player.addToWinnings(twoOfHearts);
-        player.addToWinnings(kingOfHearts);
-        player.addToWinnings(theMagician);
-        assertEquals(8,player.winningsValue());
-    }
+//    @Test
+//    public void canAddUpWinnings(){
+//        player.addToWinnings(twoOfHearts);
+//        player.addToWinnings(kingOfHearts);
+//        player.addToWinnings(theMagician);
+//        assertEquals(8,player.winningsValue());
+//    }
 
 
 }

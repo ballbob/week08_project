@@ -86,8 +86,8 @@ public class Player{
 
     //winnings
     //need addToWinnings() method which will add a trick to the winnings.
-    public void addToWinnings(Card card){
-        this.winnings.add(card);
+    public void addToWinnings(ArrayList<Card> card){
+        this.winnings.addAll(card);
     }
 
     public int winningsLength(){

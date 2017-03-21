@@ -68,4 +68,14 @@ public class GameTest {
         assertEquals(18,player3.handLength());
         assertEquals(18,player4.handLength());
     }
+
+    @Test
+    public void canRunTurn(){
+        game.setUp();
+        game.turn();
+        assertEquals(0,player1.winningsValue());
+        assertEquals(0,player2.winningsValue());
+        assertEquals(0,player3.winningsValue());
+        assertEquals(0,player4.winningsValue());
+    }
 }
