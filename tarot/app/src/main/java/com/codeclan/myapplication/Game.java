@@ -10,11 +10,13 @@ import java.util.ArrayList;
 public class Game {
 
     Dealer dealer;
+    ArrayList<Card> trick;
     Player playerOne;
     Player playerTwo;
     Player playerThree;
     Player playerFour;
-    ArrayList<Card> trick;
+    ArrayList<Player> players;
+    ArrayList<Player> discountedPlayers;
     Card theMagician;
     Card thePriestess;
     Card theEmpress;
@@ -94,33 +96,28 @@ public class Game {
     Card card56;
     Card[] cardArray;
 
-    public Game(Dealer dealer, Player playerOne, Player playerTwo, Player playerThree, Player playerFour) {
+    public Game(Dealer dealer){
         this.dealer = dealer;
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
-        this.playerThree = playerThree;
-        this.playerFour = playerFour;
+        this.players = new ArrayList<Player>();
         this.trick = new ArrayList<Card>();
+    }
+
+    public Player getPlayerOne(){
+        return players.get(0);
+    }
+
+    public Player getPlayerTwo(){
+        return players.get(1);
+    }
+    public Player getPlayerThree(){
+        return players.get(2);
+    }
+    public Player getPlayerFour(){
+        return players.get(3);
     }
 
     public Dealer getDealer() {
         return dealer;
-    }
-
-    public Player getPlayerOne() {
-        return playerOne;
-    }
-
-    public Player getPlayerTwo() {
-        return playerTwo;
-    }
-
-    public Player getPlayerThree() {
-        return playerThree;
-    }
-
-    public Player getPlayerFour() {
-        return playerFour;
     }
 
     public ArrayList<Card> getTrick() {
@@ -220,23 +217,26 @@ public class Game {
                 strength, theHermit, theWheel, justice, theHangedMan, death, temperance, theDevil, theTower,
                 theStar, theMoon, theSun, judgement, theWorld
         };
-        dealer.populateDeck(cardArray);
 
+        playerOne = new Player("Jim");
+        playerTwo = new Player("Jam");
+        playerThree = new Player("Jem");
+        playerFour = new Player("Jum");
+
+        dealer.populateDeck(cardArray);
         dealer.shuffle();
 
-        dealer.deal(playerOne);
-        dealer.deal(playerTwo);
-        dealer.deal(playerThree);
-        dealer.deal(playerFour);
-    }
-
-    public void turn() {
-
-        ArrayList<Player> players = new ArrayList<Player>();
         players.add(playerOne);
         players.add(playerTwo);
         players.add(playerThree);
         players.add(playerFour);
+
+        for (Player player : players){
+            dealer.deal(player);
+        }
+    }
+
+    public void turn() {
 
         for (Player player : players) {
 
@@ -269,14 +269,8 @@ public class Game {
 
 
     public String game() {
-        ArrayList<Player> players = new ArrayList<Player>();
-        players.add(playerOne);
-        players.add(playerTwo);
-        players.add(playerThree);
-        players.add(playerFour);
-
         for (Player player : players) {
-            if (player.handLength() == 0) {
+            if (player.handLength() != 0) {
                 turn();
             } else {
                 return player + " wins, with " + player.winningsValue() + "points.";
