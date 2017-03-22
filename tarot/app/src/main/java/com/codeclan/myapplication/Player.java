@@ -107,4 +107,5 @@ public class Player{
     public void addTrickToWinnings(ArrayList<Card> trick){
         this.winnings.addAll(trick);
     }
+
 }

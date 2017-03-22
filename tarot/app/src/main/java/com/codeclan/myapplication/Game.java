@@ -1,5 +1,7 @@
 package com.codeclan.myapplication;
 
+import android.util.Log;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -15,6 +17,7 @@ public class Game {
     Player playerTwo;
     Player playerThree;
     Player playerFour;
+    Player nextPlayer;
     ArrayList<Player> players;
     ArrayList<Player> discountedPlayers;
     int trickWinCount;
@@ -278,39 +281,61 @@ public class Game {
 
         //iterate over the arrays in a for loop so that the next and previous players can be affected
 
-            for(int i=0, i<this.players.size(); i++){
+            for(int i=0; i<this.players.size(); i++){
 
         //discount a player if they have no cards
 
-                if (this.players.get(i).handLength() = 0){
+                if(i != 3){
+                    nextPlayer = this.players.get(i+1);
+                }
+
+                if (i == 3){
+                    nextPlayer = this.players.get(0);
+                }
+
+                if (this.players.get(i).handLength() == 0){
                     discountedPlayers.add(this.players.get(i));
                     players.remove(this.players.get(i));
                 }
 
-         //else, play into trick
+        //else, play into trick
 
                 else {
 
         //play the first card
 
-                    trick.add(this.players.get(i).lowestInHand);
+                    trick.add(this.players.get(i).lowestInHand());
+                    this.players.get(i).removeFromHand(this.players.get(i).lowestInHand());
 
         //if the next player has a card of the same suit, it will be played
 
-                    if(this.players.get(i+1).handContainsSuit(trick.get(0).getSuit() == true)){
-                        trick.add(this.players.get(i+1).lowestOfSuit(trick.get(0).getSuit()));
+                    if(nextPlayer.handContainsSuit(trick.get(0).getSuit())){
+                        trick.add(nextPlayer.lowestOfSuit(trick.get(0).getSuit()));
+                        nextPlayer.removeFromHand(nextPlayer.lowestOfSuit(trick.get(0).getSuit()));
                     }
+
         //if it doesn't, and it has a bout, it will play the lowest one
 
-                    else if (this.players.get(i+1).handContainsSuit(trick.get(0).getSuit(Suit.BOUT) == true)){
-                        trick.add(this.players.get(i).lowestOfSuit(Suit.BOUT));
+                    else if (nextPlayer.handContainsSuit(Suit.BOUT)){
+                            trick.add(nextPlayer.lowestOfSuit(Suit.BOUT));
+                            nextPlayer.removeFromHand(nextPlayer.lowestOfSuit(Suit.BOUT));
                     }
 
         //if it has neither of these, it plays the lowest card it has and the trick goes to the player
 
                     else{
-                        trick.add(this.players.get(i+1).lowestInHand);
+
+        //play lowest card into trick
+
+                        trick.add(nextPlayer.lowestInHand());
+
+        //add trick to previous player
+
                         this.players.get(i).addTrickToWinnings(trick);
+                        this.trick.clear();
+
+        //add to trickwincount and the loop closes
+
                         trickWinCount = trickWinCount+1;
                     }
                 }
