@@ -16,6 +16,8 @@ public class Game {
     Player playerThree;
     Player playerFour;
     ArrayList<Player> players;
+    ArrayList<Player> discountedPlayers;
+    int trickWinCount;
     Card theMagician;
     Card thePriestess;
     Card theEmpress;
@@ -237,36 +239,87 @@ public class Game {
         }
     }
 
-    public void turn() {
+//    public void turn() {
+//
+//        for (Player player : players) {
+//
+//            //remove the player from play if their hand is empty
+//            if (player.handLength() == 0) {
+//                players.remove(player);
+//            }
+//            //start play: add a card to the trick
+//            else {
+//                trick.add(player.lowestInHand());
+//            }
+//
+//
+//            //if the next player has a card of the right suit, add it to the trick
+//            if (player.handContainsSuit(trick.get(0).getSuit())) {
+//                if (player.handContainsSuit(Suit.BOUT)) {
+//                    trick.add(player.lowestOfSuit(Suit.BOUT));
+//
+//            //once bouts are exhausted, the next player plays their lowest
+//                } else {
+//                    trick.add(player.lowestInHand());
+//            //and the trick is added to their winnings
+//                    player.addToWinnings(trick);
+//                }
+//            } else {
+//                trick.add(player.lowestOfSuit(trick.get(0).getSuit()));
+//            }
+//        }
+//    }
 
-        for (Player player : players) {
+    public void turn(){
+        int trickWinCount = 0;
 
-            //remove the player from play if their hand is empty
-            if (player.handLength() == 0) {
-                players.remove(player);
-            }
-            //start play: add a card to the trick
-            else {
-                trick.add(player.lowestInHand());
-            }
+        //we want this turn to fill one trick and pass it to a player
+        while (trickWinCount == 0){
 
+        //iterate over the arrays in a for loop so that the next and previous players can be affected
 
-            //if the next player has a card of the right suit, add it to the trick
-            if (player.handContainsSuit(trick.get(0).getSuit())) {
-                if (player.handContainsSuit(Suit.BOUT)) {
-                    trick.add(player.lowestOfSuit(Suit.BOUT));
+            for(int i=0, i<this.players.size(); i++){
 
-            //once bouts are exhausted, the next player plays their lowest
-                } else {
-                    trick.add(player.lowestInHand());
-            //and the trick is added to their winnings
-                    player.addToWinnings(trick);
+        //discount a player if they have no cards
+
+                if (this.players.get(i).handLength() = 0){
+                    discountedPlayers.add(this.players.get(i));
+                    players.remove(this.players.get(i));
                 }
-            } else {
-                trick.add(player.lowestOfSuit(trick.get(0).getSuit()));
+
+         //else, play into trick
+
+                else {
+
+        //play the first card
+
+                    trick.add(this.players.get(i).lowestInHand);
+
+        //if the next player has a card of the same suit, it will be played
+
+                    if(this.players.get(i+1).handContainsSuit(trick.get(0).getSuit() == true)){
+                        trick.add(this.players.get(i+1).lowestOfSuit(trick.get(0).getSuit()));
+                    }
+        //if it doesn't, and it has a bout, it will play the lowest one
+
+                    else if (this.players.get(i+1).handContainsSuit(trick.get(0).getSuit(Suit.BOUT) == true)){
+                        trick.add(this.players.get(i).lowestOfSuit(Suit.BOUT));
+                    }
+
+        //if it has neither of these, it plays the lowest card it has and the trick goes to the player
+
+                    else{
+                        trick.add(this.players.get(i+1).lowestInHand);
+                        this.players.get(i).addTrickToWinnings(trick);
+                        trickWinCount = trickWinCount+1;
+                    }
+                }
             }
         }
     }
+
+
+
 }
 
 //
@@ -275,7 +328,7 @@ public class Game {
 //            if (player.handLength() != 0) {
 //                turn();
 //            } else {
-//                return player + " wins, with " + player.winningsValue() + "points.";
+//                return player + " has " + player.winningsValue() + "points.";
 //            }
 //        }
 //        return "No winner.";
