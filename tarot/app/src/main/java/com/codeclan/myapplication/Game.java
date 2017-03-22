@@ -270,20 +270,20 @@ public class Game {
 
 
 
-//    public String game() {
-//        ArrayList<Player> players = new ArrayList<Player>();
-//        players.add(playerOne);
-//        players.add(playerTwo);
-//        players.add(playerThree);
-//        players.add(playerFour);
-//
-//        for (Player player : players) {
-//            if (player.winningsValue() == 0) {
-//                turn();
-//            } else {
-//                return player + " wins, with " + player.winningsValue() + "points.";
-//            }
-//        }
-//        return "No winner.";
-//    }
+    public String game() {
+        ArrayList<Player> players = new ArrayList<Player>();
+        players.add(playerOne);
+        players.add(playerTwo);
+        players.add(playerThree);
+        players.add(playerFour);
+
+        for (Player player : players) {
+            if (player.handLength() == 0) {
+                turn();
+            } else {
+                return player + " wins, with " + player.winningsValue() + "points.";
+            }
+        }
+        return "No winner.";
+    }
 
