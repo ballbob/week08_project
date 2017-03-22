@@ -16,7 +16,6 @@ public class Game {
     Player playerThree;
     Player playerFour;
     ArrayList<Player> players;
-    ArrayList<Player> discountedPlayers;
     Card theMagician;
     Card thePriestess;
     Card theEmpress;
@@ -96,23 +95,25 @@ public class Game {
     Card card56;
     Card[] cardArray;
 
-    public Game(Dealer dealer){
+    public Game(Dealer dealer) {
         this.dealer = dealer;
         this.players = new ArrayList<Player>();
         this.trick = new ArrayList<Card>();
     }
 
-    public Player getPlayerOne(){
+    public Player getPlayerOne() {
         return players.get(0);
     }
 
-    public Player getPlayerTwo(){
+    public Player getPlayerTwo() {
         return players.get(1);
     }
-    public Player getPlayerThree(){
+
+    public Player getPlayerThree() {
         return players.get(2);
     }
-    public Player getPlayerFour(){
+
+    public Player getPlayerFour() {
         return players.get(3);
     }
 
@@ -231,7 +232,7 @@ public class Game {
         players.add(playerThree);
         players.add(playerFour);
 
-        for (Player player : players){
+        for (Player player : players) {
             dealer.deal(player);
         }
     }
@@ -255,10 +256,10 @@ public class Game {
                 if (player.handContainsSuit(Suit.BOUT)) {
                     trick.add(player.lowestOfSuit(Suit.BOUT));
 
-                    //once bouts are exhausted, the next player plays their lowest
+            //once bouts are exhausted, the next player plays their lowest
                 } else {
                     trick.add(player.lowestInHand());
-                    //and the trick is added to their winnings
+            //and the trick is added to their winnings
                     player.addToWinnings(trick);
                 }
             } else {
@@ -266,16 +267,18 @@ public class Game {
             }
         }
     }
-
-
-    public String game() {
-        for (Player player : players) {
-            if (player.handLength() != 0) {
-                turn();
-            } else {
-                return player + " wins, with " + player.winningsValue() + "points.";
-            }
-        }
-        return "No winner.";
-    }
 }
+
+//
+//    public String game() {
+//        for (Player player : players) {
+//            if (player.handLength() != 0) {
+//                turn();
+//            } else {
+//                return player + " wins, with " + player.winningsValue() + "points.";
+//            }
+//        }
+//        return "No winner.";
+//    }
+
+
