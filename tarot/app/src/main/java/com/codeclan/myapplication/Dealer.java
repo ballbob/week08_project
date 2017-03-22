@@ -35,7 +35,7 @@ public class Dealer {
 
     public void deal(Player player){
         for(int i = 0; i < 18; i++) {
-            player.addToHand(this.deck.get(0));
+            player.addToHand(deck.remove(0));
         }
     }
 

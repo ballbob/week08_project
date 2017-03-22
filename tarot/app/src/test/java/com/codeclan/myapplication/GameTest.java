@@ -33,31 +33,31 @@ public class GameTest {
     public void canGetDealer(){
         assertEquals(dealer, game.getDealer());
     }
-
-    @Test
-    public void canGetPlayerOne(){
-        assertEquals("Jim",game.getPlayerOne().getName());
-    }
-
-    @Test
-    public void canGetPlayerTwo(){
-        assertEquals("Jam",game.getPlayerTwo().getName());
-    }
-
-    @Test
-    public void canGetPlayerThree(){
-        assertEquals("Jem",game.getPlayerThree().getName());
-    }
-
-    @Test
-    public void canGetPlayerFour(){
-        assertEquals("Jum",game.getPlayerFour().getName());
-    }
+//
+//    @Test
+//    public void canGetPlayerOne(){
+//        assertEquals("Jim",game.getPlayerOne().getName());
+//    }
+//
+//    @Test
+//    public void canGetPlayerTwo(){
+//        assertEquals("Jam",game.getPlayerTwo().getName());
+//    }
+//
+//    @Test
+//    public void canGetPlayerThree(){
+//        assertEquals("Jem",game.getPlayerThree().getName());
+//    }
+//
+//    @Test
+//    public void canGetPlayerFour(){
+//        assertEquals("Jum",game.getPlayerFour().getName());
+//    }
 
 
     @Test
     public void canSetUp(){
-        assertEquals(77,dealer.deckSize());
+        assertEquals(5,dealer.deckSize());
         assertEquals(18,game.getPlayerOne().handLength());
         assertEquals(18,game.getPlayerTwo().handLength());
         assertEquals(18,game.getPlayerThree().handLength());
@@ -67,9 +67,9 @@ public class GameTest {
     @Test
     public void canRunTurn(){
         game.turn();
-        assertEquals(0,game.getPlayerOne().winningsValue());
-        assertEquals(0,game.getPlayerTwo().winningsValue());
-        assertEquals(0,game.getPlayerThree().winningsValue());
-        assertEquals(0,game.getPlayerFour().winningsValue());
+        assertEquals(0,game.getPlayerOne().winningsLength());
+        assertEquals(0,game.getPlayerTwo().winningsLength());
+        assertEquals(0,game.getPlayerThree().winningsLength());
+        assertEquals(0,game.getPlayerFour().winningsLength());
     }
 }

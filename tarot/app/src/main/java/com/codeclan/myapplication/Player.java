@@ -10,7 +10,7 @@ public class Player{
     Card card1;
     Card card2;
     private String name;
-    private ArrayList<Card> hand;
+    public ArrayList<Card> hand;
     private ArrayList<Card> winnings;
 
     public Player(String name){
@@ -44,9 +44,6 @@ public class Player{
         for (Card card : this.hand) {
             if (card.getSuit() == suit) {
                 return true;
-            }
-            else{
-                return false;
             }
         }
         return false;
@@ -97,11 +94,16 @@ public class Player{
     //need winValue() method which counts the winValues of all
     // cards in the winnings arraylist
     public int winningsValue(){
-        int points = 0;
-        for (Card card : winnings){
-            points = points + card.getWinValue();
+        if (winningsLength() != 0) {
+            return 0;
         }
-        return points;
+        else{
+            int points = 0;
+            for (Card card : winnings) {
+                points = points + card.getWinValue();
+            }
+            return points;
+        }
     }
 
     public void addTrickToWinnings(ArrayList<Card> trick){

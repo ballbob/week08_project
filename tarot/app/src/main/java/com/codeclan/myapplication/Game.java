@@ -3,7 +3,11 @@ package com.codeclan.myapplication;
 import android.util.Log;
 
 import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Collections.rotate;
 
 /**
  * Created by user on 19/03/2017.
@@ -11,116 +15,115 @@ import java.util.ArrayList;
 
 public class Game {
 
-    Dealer dealer;
-    ArrayList<Card> trick;
-    Player playerOne;
-    Player playerTwo;
-    Player playerThree;
-    Player playerFour;
-    Player nextPlayer;
-    ArrayList<Player> players;
-    ArrayList<Player> discountedPlayers;
-    int trickWinCount;
-    Card theMagician;
-    Card thePriestess;
-    Card theEmpress;
-    Card theEmperor;
-    Card theHierophant;
-    Card theLovers;
-    Card theChariot;
-    Card strength;
-    Card theHermit;
-    Card theWheel;
-    Card justice;
-    Card theHangedMan;
-    Card death;
-    Card temperance;
-    Card theDevil;
-    Card theTower;
-    Card theStar;
-    Card theMoon;
-    Card theSun;
-    Card judgement;
-    Card theWorld;
-    Card card1;
-    Card card2;
-    Card card3;
-    Card card4;
-    Card card5;
-    Card card6;
-    Card card7;
-    Card card8;
-    Card card9;
-    Card card10;
-    Card card11;
-    Card card12;
-    Card card13;
-    Card card14;
-    Card card15;
-    Card card16;
-    Card card17;
-    Card card18;
-    Card card19;
-    Card card20;
-    Card card21;
-    Card card22;
-    Card card23;
-    Card card24;
-    Card card25;
-    Card card26;
-    Card card27;
-    Card card28;
-    Card card29;
-    Card card30;
-    Card card31;
-    Card card32;
-    Card card33;
-    Card card34;
-    Card card35;
-    Card card36;
-    Card card37;
-    Card card38;
-    Card card39;
-    Card card40;
-    Card card41;
-    Card card42;
-    Card card43;
-    Card card44;
-    Card card45;
-    Card card46;
-    Card card47;
-    Card card48;
-    Card card49;
-    Card card50;
-    Card card51;
-    Card card52;
-    Card card53;
-    Card card54;
-    Card card55;
-    Card card56;
-    Card[] cardArray;
+    private Dealer dealer;
+    private ArrayList<Card> trick;
+    private Player playerOne;
+    private Player playerTwo;
+    private Player playerThree;
+    private Player playerFour;
+    private Player nextPlayer;
+    private List<Player> players;
+    private ArrayList<Player> discountedPlayers;
+    private int trickWinCount;
+    private Card theMagician;
+    private Card thePriestess;
+    private Card theEmpress;
+    private Card theEmperor;
+    private Card theHierophant;
+    private Card theLovers;
+    private Card theChariot;
+    private Card strength;
+    private Card theHermit;
+    private Card theWheel;
+    private Card justice;
+    private Card theHangedMan;
+    private Card death;
+    private Card temperance;
+    private Card theDevil;
+    private Card theTower;
+    private Card theStar;
+    private Card theMoon;
+    private Card theSun;
+    private Card judgement;
+    private Card theWorld;
+    private Card card1;
+    private Card card2;
+    private Card card3;
+    private Card card4;
+    private Card card5;
+    private Card card6;
+    private Card card7;
+    private Card card8;
+    private Card card9;
+    private Card card10;
+    private Card card11;
+    private Card card12;
+    private Card card13;
+    private Card card14;
+    private Card card15;
+    private Card card16;
+    private Card card17;
+    private Card card18;
+    private Card card19;
+    private Card card20;
+    private Card card21;
+    private Card card22;
+    private Card card23;
+    private Card card24;
+    private Card card25;
+    private Card card26;
+    private Card card27;
+    private Card card28;
+    private Card card29;
+    private Card card30;
+    private Card card31;
+    private Card card32;
+    private Card card33;
+    private Card card34;
+    private Card card35;
+    private Card card36;
+    private Card card37;
+    private Card card38;
+    private Card card39;
+    private Card card40;
+    private Card card41;
+    private Card card42;
+    private Card card43;
+    private Card card44;
+    private Card card45;
+    private Card card46;
+    private Card card47;
+    private Card card48;
+    private Card card49;
+    private Card card50;
+    private Card card51;
+    private Card card52;
+    private Card card53;
+    private Card card54;
+    private Card card55;
+    private Card card56;
+    private Card[] cardArray;
 
     public Game(Dealer dealer) {
         this.dealer = dealer;
         this.players = new ArrayList<Player>();
         this.trick = new ArrayList<Card>();
+        this.discountedPlayers = new ArrayList<Player>();
     }
 
     public Player getPlayerOne() {
-        return players.get(0);
+        return playerOne;
     }
 
     public Player getPlayerTwo() {
-        return players.get(1);
+        return playerTwo;
     }
 
     public Player getPlayerThree() {
-        return players.get(2);
+        return playerThree;
     }
 
-    public Player getPlayerFour() {
-        return players.get(3);
-    }
+    public Player getPlayerFour() {return playerFour;}
 
     public Dealer getDealer() {
         return dealer;
@@ -131,7 +134,7 @@ public class Game {
     }
 
     public Card getTopOfTrick() {
-        return trick.get(0);
+        return trick.get(trick.size()-1);
     }
 
     public void setUp() {
@@ -242,121 +245,74 @@ public class Game {
         }
     }
 
-//    public void turn() {
-//
-//        for (Player player : players) {
-//
-//            //remove the player from play if their hand is empty
-//            if (player.handLength() == 0) {
-//                players.remove(player);
-//            }
-//            //start play: add a card to the trick
-//            else {
-//                trick.add(player.lowestInHand());
-//            }
-//
-//
-//            //if the next player has a card of the right suit, add it to the trick
-//            if (player.handContainsSuit(trick.get(0).getSuit())) {
-//                if (player.handContainsSuit(Suit.BOUT)) {
-//                    trick.add(player.lowestOfSuit(Suit.BOUT));
-//
-//            //once bouts are exhausted, the next player plays their lowest
-//                } else {
-//                    trick.add(player.lowestInHand());
-//            //and the trick is added to their winnings
-//                    player.addToWinnings(trick);
-//                }
-//            } else {
-//                trick.add(player.lowestOfSuit(trick.get(0).getSuit()));
-//            }
-//        }
-//    }
-
     public void turn(){
+
+        trick.clear();
+
         int trickWinCount = 0;
-
-        //we want this turn to fill one trick and pass it to a player
-        while (trickWinCount == 0){
-
-        //iterate over the arrays in a for loop so that the next and previous players can be affected
-
-            for(int i=0; i<this.players.size(); i++){
-
-        //discount a player if they have no cards
-
-                if(i != 3){
-                    nextPlayer = this.players.get(i+1);
-                }
-
-                if (i == 3){
-                    nextPlayer = this.players.get(0);
-                }
-
-                if (this.players.get(i).handLength() == 0){
-                    discountedPlayers.add(this.players.get(i));
-                    players.remove(this.players.get(i));
-                }
-
-        //else, play into trick
-
-                else {
 
         //play the first card
 
-                    trick.add(this.players.get(i).lowestInHand());
-                    this.players.get(i).removeFromHand(this.players.get(i).lowestInHand());
+        //while-loop: only breaks when trick won
 
-        //if the next player has a card of the same suit, it will be played
+        while (trickWinCount == 0 && this.players.size() > 1){
+//
+//            System.out.println(players.get(0).lowestInHand().getFace() + " of " + players.get(0).lowestInHand().getSuit());
+//            for (Player player : players){
+//                for (Card card : player.hand){
+//                    System.out.println(card.getFace() + " of " + card.getSuit());
+//                }
+//            }
+//
+            trick.add(0,this.players.get(0).lowestInHand());
+            this.players.get(0).removeFromHand(this.players.get(0).lowestInHand());
 
-                    if(nextPlayer.handContainsSuit(trick.get(0).getSuit())){
-                        trick.add(nextPlayer.lowestOfSuit(trick.get(0).getSuit()));
-                        nextPlayer.removeFromHand(nextPlayer.lowestOfSuit(trick.get(0).getSuit()));
-                    }
-
-        //if it doesn't, and it has a bout, it will play the lowest one
-
-                    else if (nextPlayer.handContainsSuit(Suit.BOUT)){
-                            trick.add(nextPlayer.lowestOfSuit(Suit.BOUT));
-                            nextPlayer.removeFromHand(nextPlayer.lowestOfSuit(Suit.BOUT));
-                    }
-
-        //if it has neither of these, it plays the lowest card it has and the trick goes to the player
-
-                    else{
-
-        //play lowest card into trick
-
-                        trick.add(nextPlayer.lowestInHand());
-
-        //add trick to previous player
-
-                        this.players.get(i).addTrickToWinnings(trick);
-                        this.trick.clear();
-
-        //add to trickwincount and the loop closes
-
-                        trickWinCount = trickWinCount+1;
-                    }
+            //remove a player from players if their hand is empty
+            for (int i=0; i<players.size(); i++) {
+                if (players.get(i).handLength() == 0) {
+                    this.discountedPlayers.add(0, players.get(i));
+                    this.players.remove(players.get(i));
                 }
             }
+
+
+            if (this.players.get(1).handContainsSuit( getTopOfTrick().getSuit() )){
+
+                trick.add(trick.size()-1,this.players.get(1).lowestOfSuit( getTopOfTrick().getSuit() ));
+
+                this.players.get(1).removeFromHand(this.players.get(1).lowestOfSuit(getTopOfTrick().getSuit()));
+
+                rotate(players,1);
+
+                System.out.println("The player had a card of the right suit.");
+
+            }
+
+            else if (this.players.get(1).handContainsSuit(Suit.BOUT)){
+
+                trick.add(trick.size()-1,this.players.get(1).lowestOfSuit(Suit.BOUT));
+
+                this.players.get(1).removeFromHand(this.players.get(1).lowestOfSuit(Suit.BOUT));
+
+                rotate(players,1);
+
+                System.out.println("The player had a bout.");
+            }
+
+            else{
+                trickWinCount = trickWinCount+1;
+                trick.add(trick.size()-1,this.players.get(1).lowestInHand());
+                this.players.get(1).removeFromHand(players.get(1).lowestInHand());
+                this.players.get(0).addTrickToWinnings(trick);
+
+                System.out.println("The player had neither a heart nor a bout, and folded.");
+            }
         }
+
     }
-
-
-
 }
 
-//
-//    public String game() {
-//        for (Player player : players) {
-//            if (player.handLength() != 0) {
-//                turn();
-//            } else {
-//                return player + " has " + player.winningsValue() + "points.";
-//            }
-//        }
-//        return "No winner.";
-//    }
+    //need 'game' method: if players.size() == 1, count everyone's winnings and display them.
 
+    //need 'winnings count' method: display the winnings result for every player.
 
