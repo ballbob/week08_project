@@ -250,24 +250,22 @@ public class Game {
             }
 
 
-                //if the next player has a card of the right suit, add it to the trick
-                if (player.handContainsSuit(trick.get(0).getSuit())) {
-                    if (player.handContainsSuit(Suit.BOUT)) {
-                        trick.add(player.lowestOfSuit(Suit.BOUT));
+            //if the next player has a card of the right suit, add it to the trick
+            if (player.handContainsSuit(trick.get(0).getSuit())) {
+                if (player.handContainsSuit(Suit.BOUT)) {
+                    trick.add(player.lowestOfSuit(Suit.BOUT));
 
-                        //once bouts are exhausted, the next player plays their lowest
-                    } else {
-                        trick.add(player.lowestInHand());
-                        //and the trick is added to their winnings
-                        player.addToWinnings(trick);
-                    }
+                    //once bouts are exhausted, the next player plays their lowest
                 } else {
-                    trick.add(player.lowestOfSuit(trick.get(0).getSuit()));
+                    trick.add(player.lowestInHand());
+                    //and the trick is added to their winnings
+                    player.addToWinnings(trick);
                 }
+            } else {
+                trick.add(player.lowestOfSuit(trick.get(0).getSuit()));
             }
         }
     }
-
 
 
     public String game() {
@@ -286,4 +284,4 @@ public class Game {
         }
         return "No winner.";
     }
-
+}
