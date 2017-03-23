@@ -64,12 +64,23 @@ public class GameTest {
         assertEquals(18,game.getPlayerFour().handLength());
     }
 
+//    @Test
+//    public void canRunTurn(){
+//        game.turn();
+//        assertEquals(0,game.getPlayerOne().winningsLength());
+//        assertEquals(0,game.getPlayerTwo().winningsLength());
+//        assertEquals(0,game.getPlayerThree().winningsLength());
+//        assertEquals(0,game.getPlayerFour().winningsLength());
+//    }
+
+//    @Test
+//    public void canRunGame(){
+//        assertEquals("Failure: no winner.",game.game());
+//    }
+
     @Test
-    public void canRunTurn(){
-        game.turn();
-        assertEquals(0,game.getPlayerOne().winningsLength());
-        assertEquals(0,game.getPlayerTwo().winningsLength());
-        assertEquals(0,game.getPlayerThree().winningsLength());
-        assertEquals(0,game.getPlayerFour().winningsLength());
+    public void canDisplayScores(){
+        game.game();
+        assertEquals("Failure",game.getScores());
     }
 }

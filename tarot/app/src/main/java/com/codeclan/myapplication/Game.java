@@ -123,7 +123,9 @@ public class Game {
         return playerThree;
     }
 
-    public Player getPlayerFour() {return playerFour;}
+    public Player getPlayerFour() {
+        return playerFour;
+    }
 
     public Dealer getDealer() {
         return dealer;
@@ -134,7 +136,7 @@ public class Game {
     }
 
     public Card getTopOfTrick() {
-        return trick.get(trick.size()-1);
+        return trick.get(trick.size() - 1);
     }
 
     public void setUp() {
@@ -245,7 +247,7 @@ public class Game {
         }
     }
 
-    public void turn(){
+    public void turn() {
 
         trick.clear();
 
@@ -255,64 +257,84 @@ public class Game {
 
         //while-loop: only breaks when trick won
 
-        while (trickWinCount == 0 && this.players.size() > 1){
-//
-//            System.out.println(players.get(0).lowestInHand().getFace() + " of " + players.get(0).lowestInHand().getSuit());
-//            for (Player player : players){
-//                for (Card card : player.hand){
-//                    System.out.println(card.getFace() + " of " + card.getSuit());
-//                }
-//            }
-//
-            trick.add(0,this.players.get(0).lowestInHand());
+        while (trickWinCount == 0 && this.players.size() > 1) {
+
+            //play the first card
+            trick.add(0, this.players.get(0).lowestInHand());
             this.players.get(0).removeFromHand(this.players.get(0).lowestInHand());
 
             //remove a player from players if their hand is empty
-            for (int i=0; i<players.size(); i++) {
+            for (int i = 0; i < players.size(); i++) {
                 if (players.get(i).handLength() == 0) {
                     this.discountedPlayers.add(0, players.get(i));
                     this.players.remove(players.get(i));
                 }
             }
 
+            if (this.players.get(1).handContainsSuit(getTopOfTrick().getSuit())) {
 
-            if (this.players.get(1).handContainsSuit( getTopOfTrick().getSuit() )){
+                System.out.println(trick.size());
 
-                trick.add(trick.size()-1,this.players.get(1).lowestOfSuit( getTopOfTrick().getSuit() ));
+                trick.add(trick.size() - 1, this.players.get(1).lowestOfSuit(getTopOfTrick().getSuit()));
+
+                System.out.println("Available card: " + this.players.get(1).lowestOfSuit(getTopOfTrick().getSuit()).getFace() + " of " + this.players.get(1).lowestOfSuit(getTopOfTrick().getSuit()).getSuit());
 
                 this.players.get(1).removeFromHand(this.players.get(1).lowestOfSuit(getTopOfTrick().getSuit()));
 
-                rotate(players,1);
+                rotate(players, 1);
 
-                System.out.println("The player had a card of the right suit.");
+                System.out.println("The player had a card of the right suit:");
 
-            }
+            } else if (this.players.get(1).handContainsSuit(Suit.BOUT)) {
 
-            else if (this.players.get(1).handContainsSuit(Suit.BOUT)){
-
-                trick.add(trick.size()-1,this.players.get(1).lowestOfSuit(Suit.BOUT));
+                trick.add(trick.size() - 1, this.players.get(1).lowestOfSuit(Suit.BOUT));
 
                 this.players.get(1).removeFromHand(this.players.get(1).lowestOfSuit(Suit.BOUT));
 
-                rotate(players,1);
+                rotate(players, 1);
 
                 System.out.println("The player had a bout.");
-            }
 
-            else{
-                trickWinCount = trickWinCount+1;
-                trick.add(trick.size()-1,this.players.get(1).lowestInHand());
+            } else {
+
+                trickWinCount = trickWinCount + 1;
+
+                trick.add(trick.size() - 1, this.players.get(1).lowestInHand());
+
                 this.players.get(1).removeFromHand(players.get(1).lowestInHand());
+
                 this.players.get(0).addTrickToWinnings(trick);
 
-                System.out.println("The player had neither a heart nor a bout, and folded.");
+                System.out.println("The player had neither the right suit nor a bout, and folded. The trick went to " + players.get(0).getName());
             }
         }
 
     }
-}
+
 
     //need 'game' method: if players.size() == 1, count everyone's winnings and display them.
-
+    public String game() {
+        while (players.size() >= 1) {
+            turn();
+        }
+        discountedPlayers.add(players.get(0));
+        for (Player player : discountedPlayers) {
+            String discountedPlayerStrings;
+            discountedPlayerStrings = player.getName() + " has " + player.winningsValue() + " points. ";
+            System.out.println(discountedPlayerStrings);
+            return discountedPlayerStrings;
+        }
+        return "Failure";
+    }
     //need 'winnings count' method: display the winnings result for every player.
 
+    public String getScores() {
+        for (Player player : discountedPlayers) {
+            String winningsString;
+            winningsString = player.getName() + " has " + player.winningsValue() + " points. ";
+            System.out.println(winningsString);
+            return winningsString;
+        }
+        return "failure";
+    }
+}
